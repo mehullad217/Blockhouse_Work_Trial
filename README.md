@@ -34,15 +34,17 @@ We model the function \( g_t(x) \): temporary price impact of trading \( x \) sh
 We formulate how to split a large total order \( S \) into slices \( x_1, x_2, ..., x_N \) over time to minimize total impact \( \sum g_t(x_t) \).
 
 #### `Blockhouse_Trial_task_Pt2.pdf` / `Execution_Schedule_Model.md`
-- **Formulation**:
-  - Objective:  
-    \[
-    \min_{x_1, ..., x_N} \sum_{i=1}^{N} a_i (1 - e^{-b_i x_i}) \quad \text{s.t.} \quad \sum x_i = S
-    \]
-- **Techniques discussed**:
-  - 🧮 **Convex Optimization**: Using libraries like `cvxpy`.
-  - 🧠 **Greedy Approximation**: Based on marginal cost.
-  - 🔁 **Uniform Execution (TWAP)**: Benchmark for comparison.
+### 🎯 Objective Formulation
+
+We want to minimize total market impact when executing a large order `S` across `N` time slices:
+
+**Minimize:**  
+&nbsp;&nbsp;&nbsp;&nbsp;∑ aᵢ · (1 − exp(−bᵢ · xᵢ))
+
+**Subject to:**  
+&nbsp;&nbsp;&nbsp;&nbsp;∑ xᵢ = S  
+&nbsp;&nbsp;&nbsp;&nbsp;xᵢ ≥ 0
+
 
 ---
 
